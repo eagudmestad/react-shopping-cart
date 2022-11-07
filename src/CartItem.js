@@ -1,7 +1,7 @@
 function CartItem({ item, onNameChange, onQuantityAdd, onQuantityRemove }) {
   return (
     <div className="CartItem d-flex" id={`item-${item.id}`}>
-      <label htmlFor={`item-${item.id}-name`}>Name</label>
+      <label htmlFor={`item-${item.id}-name`} className='visually-hidden'>Name</label>
       <input
         id={`item-${item.id}-name`}
         type="text"
@@ -9,7 +9,7 @@ function CartItem({ item, onNameChange, onQuantityAdd, onQuantityRemove }) {
         className="form-control CartItem-name"
         onChange={(evt) => onNameChange(evt)}
       />
-      <label htmlFor={`item-${item.id}-name`}>Quantity</label>
+      <label htmlFor={`item-${item.id}-name`}className='visually-hidden'>Quantity</label>
       <span id={`item-${item.id}-quantity`} className="m-3 CartItem-quantity">
         {item.quantity}
       </span>
@@ -17,6 +17,8 @@ function CartItem({ item, onNameChange, onQuantityAdd, onQuantityRemove }) {
         type="button"
         className="btn btn-primary m-1 rounded-circle CartItem-add"
         onClick={(evt) => onQuantityAdd(evt)}
+        id='btnAdd'
+        disabled={item.quantity===10}
       >
         <span>+</span>
         <span className="visually-hidden">Add</span>
@@ -25,6 +27,7 @@ function CartItem({ item, onNameChange, onQuantityAdd, onQuantityRemove }) {
         type="button"
         className="btn btn-danger m-1 rounded-circle CartItem-remove"
         onClick={(evt) => onQuantityRemove(evt)}
+        disabled={item.quantity===0}
       >
         <span>-</span>
         <span className="visually-hidden">Remove</span>
